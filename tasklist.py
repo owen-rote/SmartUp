@@ -95,24 +95,16 @@ class TaskList:
         dictionary[new_key] = saved_value
         
     def print_tasks(self):
-        date_items = [(key, value) for key, value in self.list_dictionary.items()]
+        self.list_dictionary = self.sort_by_date()
         
-        items = sorted(date_items, key=lambda x: self.to_datetime(x[0]))
+        for k, v in self.list_dictionary.items():
+            print(f'{k:22}{v:22}') 
         
-        sorted_dict = {}
-        for date, value in items:
-            sorted_dict[date] = value
-            print(f'{date:22}{value:22}')
+    def sort_by_date(self):
+        sorted_items = sorted(self.list_dictionary.items(), key = lambda x: datetime.strptime(x[0], "%m/%d/%Y" )) 
         
+        return OrderedDict(sorted_items)       
         
-        
-            
-    def to_datetime(self, date_str):
-        date_str = self.date
-        try:
-            return datetime.strptime(date_str, '%m/%d/%Y')
-        except ValueError: 
-            return datetime.max 
         
     def is_valid_date_format(self, date_str):
         
