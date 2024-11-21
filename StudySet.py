@@ -47,7 +47,7 @@ class StudySet:
         question_prompt = 'Input the question or "exit" to end: '
 
         # ********** Loop to add questions and answers **********
-        while True:
+        while True: #PROGRAM STARTS HERE
             question = input(question_prompt)
             if question == "exit":
                 break
