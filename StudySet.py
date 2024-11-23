@@ -76,5 +76,81 @@ class StudySet:
         except Exception:
             print("File open error.")
 
-    def editStudySet(self):
-        pass  # TODO
+     def editStudySet(self, filename):
+        new_answer = list()
+        new_question = str()
+        question_to_edit = str()
+        answers = list()
+        
+        while True: 
+            editflashcard = input("Edit flashcards (Y or N)?: ")
+        
+            if editflashcard == 'Y':
+                edits = input("Edit question or answer (A or Q): ")
+                
+                if edits == 'A':
+                    question_to_edit = input("Question to edit: ")
+                    
+                    if question_to_edit not in self.studyset_dict: 
+                        print("Question not in set")
+                    
+                    while True: 
+                        new_answer = input("Enter new answer or input (exit) to end: ")
+                       
+                        if new_answer == 'exit':
+                            break
+                    
+                        if new_answer != "":
+                            answers.append(new_answer)
+                            
+                    if question_to_edit in self.studyset_dict:
+                        self.studyset_dict[question_to_edit] = answers
+                        
+                    
+                elif edits == 'Q':
+                    while True: 
+                        exit_function = input("Exit or not?: ")
+                        
+                        if exit_function == 'no':
+                            question_to_edit = input("Question to edit: ")
+                            new_question = input("Enter new question: ")
+                    
+                            answers = self.studyset_dict[question_to_edit]
+                            del self.studyset_dict[question_to_edit]
+                            self.studyset_dict[new_question] = answers
+                            
+                        elif exit_function == "exit":
+                            break
+                              
+                
+            if editflashcard == 'N':
+                return
+        
+            self.filename = filename
+        
+            with open(filename, "w") as f:
+                json.dump(self.studyset_dict, f)
+                
+    def deleteStudySet(self, filename):
+        while True: 
+            response = input("Delete deck or card or exit: ")
+            
+            if response == "card":
+                question_to_delete = input("Choose flashcard to delete by question?: ")
+        
+                if question_to_delete not in self.studyset_dict:
+                    print("Question not in set")
+                
+                else:
+                    del self.studyset_dict[question_to_delete]
+                
+            
+                        
+            if response == "deck":
+                 self.studyset_dict.clear()
+                
+            if response == "exit":
+                break
+            
+            with open(filename, "w") as f:
+                json.dump(self.studyset_dict, f)
