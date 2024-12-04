@@ -2,6 +2,7 @@ import json
 import re
 from collections import OrderedDict
 from datetime import datetime
+import random
 
 class StudySet:
     """Class to store and operate on a set of question and answer pairs"""
