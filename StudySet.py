@@ -3,6 +3,57 @@
 
 import json
 
+class MatchingMode:
+    def __init__(self, questions_dict):
+        self.questions_dict = questions_dict #this stores the original questions and answers
+        self.score = 0
+
+    def start_matching(self):
+        """Start the matching mode"""
+        questions = list(self.questions_dict.keys())
+        answers = [answer[0] for answer in self.questions_dict.values()]
+
+        random.shuffle(questions) #shuffle the questions
+        random.shuffle(answers) #shuffle answers
+
+        #create map for correct answers
+        correct_answers = {question: self.questions[question][0] for question in questions}
+
+        print("Match the questions with the correct answers.\n")
+        user_answers = {}
+
+        #loop throuh each question and ask the user to match
+        for idx, question in enumerate(questions, 1):
+            print(f"{idx}. {question}")
+
+        print("\nChoose the correct answer from the list below (enter the number corresponding to your choice).")
+
+        for idx, answer in enumerate(answers, 1):
+            print(f"{idx}. {answer}")
+
+        #collect the user input for matching
+        for idx, question in enumerate(questions, 1):
+            while True:
+                try:
+                    user_answer_idx = int(input(f"Your answer for Question {idx}: ")) - 1
+                    if user_answer_idx < 0 or user_answer_idx >= len(answers):
+                        raise ValueError
+                    user_answers[question] = answers[user_answer_idx]
+                    break
+                except (ValueError, IndexError):
+                    print("Invalid choice. Please enter a valid number.")
+
+        #check answers and calc score
+        for question, user_answer in user_answers.items():
+            if user_answer == correct_answers[question]:
+                self.score += 1
+
+        self.show_score()
+
+    def show_score(self):
+        """Display the score after the matching game."""
+        print(f"\nYour final score is: {self.score} out of {len(self.questions_dict)}")
+            
 
 class StudySet:
     """Class to store and operate on a set of question and answer pairs"""
