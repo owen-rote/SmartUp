@@ -53,6 +53,51 @@ class MatchingMode:
     def show_score(self):
         """Display the score after the matching game."""
         print(f"\nYour final score is: {self.score} out of {len(self.questions_dict)}")
+
+
+class QuizApp:
+    def __init__(self):
+        self.score = 0
+        self.questions_dict = {}  # Store the loaded questions dictionary
+        self.incorrect_answer_pool = ["Berlin", "Madrid", "Rome", "London", "New York", "Austen", "Dickens", "Hemingway", "10", "3", "5", "Yellow"]
+
+    def load_quiz(self, filename):
+        """Load the selected quiz deck from a JSON file."""
+        try:
+            with open(filename, 'r') as file:
+                self.questions_dict = json.load(file)
+        except FileNotFoundError:
+            print(f"Error: {filename} not found. Please check the file and try again.")
+            return False
+        return True
+
+    def start_quiz(self):
+        """Start the quiz with questions loaded from JSON and random incorrect answers."""
+        random.shuffle(self.questions)  # Shuffle the question order
+        self.score = 0
+
+        for question_data in self.questions:
+            self.ask_question(question_data)
+
+        self.show_score()
+
+    def choose_mode(self):
+        """Allow the user to choose between quiz mode and matching mode."""
+        print("Choose a mode:")
+        print("1. Quiz Mode")
+        print("2. Matching Mode")
+
+        mode_choice = input("Enter 1 or 2: ")
+
+        if mode_choice == '1':
+            self.start_quiz()
+        elif mode_choice == '2':
+            matching_mode = MatchingMode(self.questions_dict)
+            matching_mode.start_matching()
+        else:
+            print("Invalid choice. Please enter 1 or 2.")
+            self.choose_mode()
+
             
 
 class StudySet:
