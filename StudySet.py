@@ -2,6 +2,7 @@
 #          dictionary of questions and answers
 
 import json
+import random
 
 class MatchingMode:
     def __init__(self, questions_dict):
@@ -172,7 +173,7 @@ class StudySet:
         except Exception:
             print("File open error.")
 
-     def editStudySet(self, filename):
+    def editStudySet(self, filename):
         new_answer = list()
         new_question = str()
         question_to_edit = str()
