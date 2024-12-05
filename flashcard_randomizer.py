@@ -32,10 +32,10 @@ class FlashcardsRandomize:
     def next_question(self):
         if not self.flashcards:
             return
-        self.current_card = random.choice(self.flashcards)
+        self.current_card = random.choice(self.flashcards)                    #Looking for "question" in json file
         self.root.update_question(self.current_card["question"])
         self.root.clear_answer()
 
     def reveal_answer(self):
-        if self.current_card:
+        if self.current_card:                                                   #Looking for answer in json file
             self.root.update_answer(f"Answer: {self.current_card['answer']}")
