@@ -1,0 +1,7 @@
+{
+  "What is the time complexity of searching in a balanced binary search tree?": ["O(log n)"],
+  "What is the time complexity of inserting an element in a hash table (on average)?": ["O(1)"],
+  "What is the time complexity of performing a depth-first search on a graph?": ["O(V + E)"],
+  "What is the time complexity of accessing an element in an array by index?": ["O(1)"],
+  "What is the time complexity of sorting an array using Merge Sort?": ["O(n log n)"]
+}

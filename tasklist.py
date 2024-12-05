@@ -66,7 +66,7 @@ class TaskList:
                 self.save_data()
                 
                 if((modify_date and modify_task_response) == 'N' or 'n'):
-                break   
+                    break   
             
                     
     def save_data(self): # function to save data to a json file 

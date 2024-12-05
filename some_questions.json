@@ -1,6 +1,7 @@
 {
   "What is the capital of France?": ["Paris"],
   "What is 2 + 2?": ["4"],
-  "Who wrote 'Hamlet'?": ["Shakespeare"]
+  "Who wrote 'Hamlet'?": ["Shakespeare"],
+  "What's the capital of California?": ["Sacramento"],
+  "What's 4 squared?": ["16"]
 }
-
