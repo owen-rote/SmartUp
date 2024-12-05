@@ -42,7 +42,7 @@ class SmartUp:
         for name in self.flashcard_sets:
             print(f"- {name}")
 
-        set_name = input("\nEnter the name of the flashcard set to view its flashcards (or press Enter to go back): ").strip()
+        set_name = input("\nEnter the name of the flashcard set you want to view (or press Enter to go back): ").strip()
         if set_name not in self.flashcard_sets:
             if set_name == "":
                 return  # Go back to the menu
